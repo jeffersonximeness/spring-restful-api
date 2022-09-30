@@ -40,4 +40,17 @@ public class ClienteController {
 		
 		return ResponseEntity.ok(obj);
 	}
+	
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	@ResponseBody
+	public ResponseEntity<Void> delete(@PathVariable Integer id) {
+		Optional<Cliente> cliente = repository.findById(id);
+		
+		if (cliente.isPresent()) {
+			repository.deleteById(id);
+			return ResponseEntity.noContent().build();
+		}
+		
+		return ResponseEntity.noContent().build();
+	}
 }
