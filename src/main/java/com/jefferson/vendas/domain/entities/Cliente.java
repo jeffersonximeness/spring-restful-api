@@ -1,6 +1,5 @@
 package com.jefferson.vendas.domain.entities;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -11,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "cliente")
@@ -54,6 +55,7 @@ public class Cliente {
 		this.nome = nome;
 	}
 	
+	@JsonIgnore
 	public Set<Pedido> getPedidos() {
 		return this.pedidos;
 	}

@@ -2,7 +2,6 @@ package com.jefferson.vendas.domain.entities;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
