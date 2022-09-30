@@ -25,6 +25,7 @@ public class Cliente {
 	@Column(name = "nome", length = 100)
 	private String nome;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
 	private Set<Pedido> pedidos;
 	
@@ -55,7 +56,6 @@ public class Cliente {
 		this.nome = nome;
 	}
 	
-	@JsonIgnore
 	public Set<Pedido> getPedidos() {
 		return this.pedidos;
 	}
