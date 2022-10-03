@@ -68,7 +68,6 @@ public class ClienteController {
 									.withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
 		
 		Example<Cliente> example = Example.of(filtro, matcher);
-		System.out.println(example);
 		List<Cliente> lista = repository.findAll(example);
 		
 		return lista;
