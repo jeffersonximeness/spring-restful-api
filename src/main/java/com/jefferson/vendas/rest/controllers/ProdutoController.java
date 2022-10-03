@@ -19,7 +19,7 @@ import com.jefferson.vendas.domain.repositories.ProdutosRepository;
 
 @RestController
 @RequestMapping(value = "api/produtos")
-public class ProdutosController {
+public class ProdutoController {
 	
 	@Autowired
 	private ProdutosRepository repository;
