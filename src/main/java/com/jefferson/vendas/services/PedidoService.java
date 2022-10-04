@@ -1,5 +1,8 @@
 package com.jefferson.vendas.services;
 
-public interface PedidoService {
+import com.jefferson.vendas.domain.entities.Pedido;
+import com.jefferson.vendas.rest.dto.PedidoDTO;
 
+public interface PedidoService {
+	Pedido save(PedidoDTO peditoDto);
 }
