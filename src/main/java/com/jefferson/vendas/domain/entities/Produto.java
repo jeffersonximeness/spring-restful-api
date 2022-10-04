@@ -24,6 +24,14 @@ public class Produto {
 	@Column(name = "preco")
 	private BigDecimal preco;
 	
+	public Produto() { }
+	
+	public Produto(Integer id, String descricao, BigDecimal preco) {
+		this.id = id;
+		this.descricao = descricao;
+		this.preco = preco;
+	}
+	
 	public Integer getId() {
 		return this.id;
 	}
