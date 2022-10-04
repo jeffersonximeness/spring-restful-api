@@ -14,6 +14,7 @@ target/
 .sts4-cache
 /.db
 application.properties
+.metadata/
 
 ### IntelliJ IDEA ###
 .idea
