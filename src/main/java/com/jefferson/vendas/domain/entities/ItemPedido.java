@@ -29,27 +29,44 @@ public class ItemPedido {
 	@Column(name = "quantidade")
 	private Integer quantidade;
 	
+	public ItemPedido() { }
+	
+	
+	public ItemPedido(Integer id, Pedido pedido, Produto produto, Integer quantidade) {
+		this.id = id;
+		this.pedido = pedido;
+		this.produto = produto;
+		this.quantidade = quantidade;
+	}
+
 	public Integer getId() {
 		return this.id;
 	}
+	
 	public void setId(Integer id) {
 		this.id = id;
 	}
+	
 	public Pedido getPedido() {
 		return this.pedido;
 	}
+	
 	public void setPedido(Pedido pedido) {
 		this.pedido = pedido;
 	}
+	
 	public Produto getProduto() {
 		return this.produto;
 	}
+	
 	public void setProduto(Produto produto) {
 		this.produto = produto;
 	}
+	
 	public Integer getQuantidade() {
 		return this.quantidade;
 	}
+	
 	public void setQuantidade(Integer quantidade) {
 		this.quantidade = quantidade;
 	}
