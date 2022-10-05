@@ -3,9 +3,16 @@ package com.jefferson.vendas.rest.dto;
 import java.math.BigDecimal;
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+
 public class PedidoDTO {
+	
+	@NotNull(message = "Informe o código do cliente.")
 	private Integer cliente;
+	
+	@NotNull(message = "Campo total do pedido é obrigatório.")
 	private BigDecimal total;
+	
 	private List<ItemPedidoDTO> itens;
 	
 	public PedidoDTO() { }
