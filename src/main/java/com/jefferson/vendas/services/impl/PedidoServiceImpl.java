@@ -14,6 +14,7 @@ import com.jefferson.vendas.domain.entities.Cliente;
 import com.jefferson.vendas.domain.entities.ItemPedido;
 import com.jefferson.vendas.domain.entities.Pedido;
 import com.jefferson.vendas.domain.entities.Produto;
+import com.jefferson.vendas.domain.enums.StatusPedido;
 import com.jefferson.vendas.domain.repositories.ClientesRepository;
 import com.jefferson.vendas.domain.repositories.ItensPedidoRepository;
 import com.jefferson.vendas.domain.repositories.PedidosRepository;
@@ -22,6 +23,7 @@ import com.jefferson.vendas.exceptions.RegraNegocioException;
 import com.jefferson.vendas.rest.dto.ItemPedidoDTO;
 import com.jefferson.vendas.rest.dto.PedidoDTO;
 import com.jefferson.vendas.services.PedidoService;
+import com.jefferson.vendas.services.exceptions.PedidoNaoEncontradoException;
 
 @Service
 public class PedidoServiceImpl implements PedidoService {
@@ -51,6 +53,7 @@ public class PedidoServiceImpl implements PedidoService {
 		pedido.setTotal(peditoDto.getTotal());
 		pedido.setDataPedido(LocalDate.now());
 		pedido.setCliente(cliente);
+		pedido.setStatus(StatusPedido.REALIZADO);
 		
 		pedidosRepository.save(pedido);
 		
@@ -87,5 +90,16 @@ public class PedidoServiceImpl implements PedidoService {
 	public Optional<Pedido> getPedidoById(Integer id) {
 		
 		return pedidosRepository.findByIdFetchItens(id);
+	}
+	
+	@Override
+	@Transactional
+	public void atualizarStatus(Integer id, StatusPedido statusPedido) {
+		pedidosRepository
+			.findById(id)
+			.map(pedido -> {
+				pedido.setStatus(statusPedido);
+				return pedidosRepository.save(pedido);
+			}).orElseThrow(() -> new PedidoNaoEncontradoException());
 	}
 }
