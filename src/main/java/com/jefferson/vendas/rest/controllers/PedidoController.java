@@ -19,6 +19,8 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.jefferson.vendas.domain.entities.ItemPedido;
 import com.jefferson.vendas.domain.entities.Pedido;
+import com.jefferson.vendas.domain.enums.StatusPedido;
+import com.jefferson.vendas.rest.dto.AtualizacaoStatusPedidoDTO;
 import com.jefferson.vendas.rest.dto.InfoItemPedidoDTO;
 import com.jefferson.vendas.rest.dto.InfoPedidoDTO;
 import com.jefferson.vendas.rest.dto.PedidoDTO;
@@ -47,15 +49,23 @@ public class PedidoController {
 				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Pedido não encontrado!"));
 	}
 	
+	@RequestMapping(value = "/{id}", method = RequestMethod.PATCH)
+	public void updateStatus(@PathVariable Integer id, @RequestBody AtualizacaoStatusPedidoDTO dto) {
+		String novoStatus = dto.getNovoStatus();
+		
+		service.atualizarStatus(id, StatusPedido.valueOf(novoStatus));
+	}
+	
 	private InfoPedidoDTO convertPedidoToDTO(Pedido pedido) {
 		Integer codigo = pedido.getId();
 		String dataPedido = pedido.getDataPedido().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 		String cpf = pedido.getCliente().getCpf();
 		String nomeCliente = pedido.getCliente().getNome();
 		BigDecimal total = pedido.getTotal();
+		String status = pedido.getStatus().name();
 		List<InfoItemPedidoDTO> itens = convertItemPedidoToDTO(pedido.getItens());
 		
-		return new InfoPedidoDTO(codigo, cpf, nomeCliente, total, dataPedido, itens);
+		return new InfoPedidoDTO(codigo, cpf, nomeCliente, total, dataPedido, status, itens);
 	}
 	
 	private List<InfoItemPedidoDTO> convertItemPedidoToDTO(List<ItemPedido> itens) {
