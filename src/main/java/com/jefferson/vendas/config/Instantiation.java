@@ -22,7 +22,7 @@ public class Instantiation implements CommandLineRunner {
 	
 	@Override
 	public void run(String... args) throws Exception {
-		clientesRepository.save(new Cliente(null, "Jefferson", "00000000000"));
+		clientesRepository.save(new Cliente(null, "Jefferson", "21265855064"));
 		
 		produtosRepository.save(new Produto(null, "Smart TV", new BigDecimal("1500")));
 		produtosRepository.save(new Produto(null, "Mac Book", new BigDecimal("7500")));
