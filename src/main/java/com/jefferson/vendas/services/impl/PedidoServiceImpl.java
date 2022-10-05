@@ -2,6 +2,7 @@ package com.jefferson.vendas.services.impl;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
@@ -80,5 +81,11 @@ public class PedidoServiceImpl implements PedidoService {
 					return itemPedido;
 										
 				}).collect(Collectors.toList());
+	}
+
+	@Override
+	public Optional<Pedido> getPedidoById(Integer id) {
+		
+		return pedidosRepository.findByIdFetchItens(id);
 	}
 }
