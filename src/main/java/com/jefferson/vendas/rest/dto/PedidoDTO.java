@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
+import com.jefferson.vendas.validation.NotEmptyList;
+
 public class PedidoDTO {
 	
 	@NotNull(message = "Informe o código do cliente.")
@@ -13,6 +15,7 @@ public class PedidoDTO {
 	@NotNull(message = "Campo total do pedido é obrigatório.")
 	private BigDecimal total;
 	
+	@NotEmptyList(message = "Campo lista não pode estar vazio.")
 	private List<ItemPedidoDTO> itens;
 	
 	public PedidoDTO() { }
