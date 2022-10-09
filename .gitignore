@@ -15,6 +15,7 @@ target/
 /.db
 application.properties
 .metadata/
+.my-db/
 
 ### IntelliJ IDEA ###
 .idea
