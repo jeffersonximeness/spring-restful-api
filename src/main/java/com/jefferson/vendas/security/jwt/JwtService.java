@@ -1,4 +1,4 @@
-package com.jefferson.vendas;
+package com.jefferson.vendas.security.jwt;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -10,6 +10,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Service;
 
+import com.jefferson.vendas.VendasApplication;
 import com.jefferson.vendas.domain.entities.Usuario;
 
 import io.jsonwebtoken.Claims;
